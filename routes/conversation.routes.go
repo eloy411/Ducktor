@@ -15,6 +15,7 @@ type Preguntas struct {
 	Pregunta3 string
 	Pregunta4 string
 	Pregunta5 string
+	Pregunta6 string
 }
 
 
@@ -37,6 +38,7 @@ func GetConversation(w http.ResponseWriter, r *http.Request) {
 		Pregunta3: "soy la pregunta 3",
 		Pregunta4: "soy la pregunta 4",
 		Pregunta5: "soy la pregunta 5",
+		Pregunta6: "soy la pregunta 6",
 	}
 	/** REQUEST PARA PEDIR LAS CONVERSACIONES SEGUN DIA, CONFIANZA, NIVEL DE ENFERMEDAD, NUM CONVERSACIONES*/
 	resp := make(map[string]string)
