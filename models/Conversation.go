@@ -2,6 +2,7 @@ package models
 
 type Responses struct {
     IdTest string
+	IdUser string
     Respuesta1 string
 	Respuesta2 string
 	Respuesta3 string
@@ -10,6 +11,7 @@ type Responses struct {
 }
 
 type Preguntas struct {
+	IdTest string
 	Pregunta1 string
 	Pregunta2 string
 	Pregunta3 string

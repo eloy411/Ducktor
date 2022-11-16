@@ -1,11 +1,17 @@
 package models
 
+import "time"
 
 type User struct {
-    IdTest string
-    respuesta1 int
-	respuesta2 int
-	respuesta3 int
-	respuesta4 int
-	respuesta5 int
+	IdUser       string
+	Nombre       string
+	Edad         int
+	Ciudad       string
+	Hospital     string
+	Enfermedad   string
+	Confianza    int
+	Gravedad     int
+	FechaEntrada time.Time
+	NumTest      int
+	NumDibujos   int
 }

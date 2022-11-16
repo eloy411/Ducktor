@@ -15,9 +15,13 @@ func GetConversation(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 	w.Header().Set("Content-Type", "application/json")
 
+	/** RECIBIMOS LOS DATOS DEL USUARIO*/
 
+	var user models.User
 
-	/**ESTA SIMULANDO UNA PETICION A LA BASE DE DATOS*/
+	err := json.NewDecoder(r.Body).Decode(&user)
+
+	/**ESTA SIMULANDO UNA PETICION A LA BASE DE DATOS hacer una query que sacara preguntas según la que no haya hecho, gravedad, tiempo de estancia */
 	p := models.Preguntas{
 		Pregunta1: "soy la pregunta 1",
 		Pregunta2: "soy la pregunta 2",

@@ -3,15 +3,20 @@ package main
 import (
 	"net/http"
 
+	"github.com/eloy411/project-M12-BACK/config"
 	"github.com/eloy411/project-M12-BACK/routes"
-	"github.com/rs/cors"
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
 func main() {
+	
+	config.ConnectDB()
 	r := mux.NewRouter()
 
 	/**ROUTES*/
+
+
 	r.HandleFunc("/ini",routes.Initialization).Methods("GET")
 	r.HandleFunc("/finish",routes.Finish).Methods("GET")
 
