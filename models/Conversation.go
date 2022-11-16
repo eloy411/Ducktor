@@ -8,3 +8,11 @@ type Responses struct {
 	Respuesta4 string
 	Respuesta5 string
 }
+
+type Preguntas struct {
+	Pregunta1 string
+	Pregunta2 string
+	Pregunta3 string
+	Pregunta4 string
+	Pregunta5 string
+}

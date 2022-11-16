@@ -18,10 +18,10 @@ func main() {
 	r.HandleFunc("/game1",routes.IniGame).Methods("POST")
 	r.HandleFunc("/game1",routes.DataGame).Methods("POST")
 
-	r.HandleFunc("/conversation",routes.GetConversation).Methods("POST")
+	r.HandleFunc("/conversation-init",routes.GetConversation).Methods("POST")
 	r.HandleFunc("/conversation-register-data",routes.RegisterResponses).Methods("POST")
 
-	r.HandleFunc("/painting",routes.IniPainting).Methods("GET")
+	r.HandleFunc("/painting-init",routes.IniPainting).Methods("POST")
 	r.HandleFunc("/painting",routes.SavePaint).Methods("POST")
 
 	r.HandleFunc("/rewards",routes.SaveCoins).Methods("PUT")

@@ -2,24 +2,10 @@ package routes
 
 import (
 	"encoding/json"
-	
 	"log"
 	"net/http"
-
 	"github.com/eloy411/project-M12-BACK/models"
 )
-
-type Preguntas struct {
-	Pregunta1 string
-	Pregunta2 string
-	Pregunta3 string
-	Pregunta4 string
-	Pregunta5 string
-}
-
-
-
-
 
 
 
@@ -31,25 +17,24 @@ func GetConversation(w http.ResponseWriter, r *http.Request) {
 
 
 
-	p := Preguntas{
+	/**ESTA SIMULANDO UNA PETICION A LA BASE DE DATOS*/
+	p := models.Preguntas{
 		Pregunta1: "soy la pregunta 1",
 		Pregunta2: "soy la pregunta 2",
 		Pregunta3: "soy la pregunta 3",
 		Pregunta4: "soy la pregunta 4",
 		Pregunta5: "soy la pregunta 5",
 	}
+
 	/** REQUEST PARA PEDIR LAS CONVERSACIONES SEGUN DIA, CONFIANZA, NIVEL DE ENFERMEDAD, NUM CONVERSACIONES*/
-	resp := make(map[string]string)
-	resp["message"] = "iniciando conversacion"
+	
 	jsonResp, err := json.Marshal(p)
-
-
-
 
 	if err != nil {
 		log.Fatalf("Error happened in JSON marshal. Err: %s", err)
 		return
 	}
+
 	w.Write(jsonResp)
 
 	
