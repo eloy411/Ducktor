@@ -23,6 +23,8 @@ func GetConversation(w http.ResponseWriter, r *http.Request) {
 
 	/**ESTA SIMULANDO UNA PETICION A LA BASE DE DATOS hacer una query que sacara preguntas según la que no haya hecho, gravedad, tiempo de estancia */
 	p := models.Preguntas{
+
+		IdTest: 1,
 		Pregunta1: "soy la pregunta 1",
 		Pregunta2: "soy la pregunta 2",
 		Pregunta3: "soy la pregunta 3",

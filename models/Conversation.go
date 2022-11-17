@@ -11,7 +11,7 @@ type Responses struct {
 }
 
 type Preguntas struct {
-	IdTest string
+	IdTest int
 	Pregunta1 string
 	Pregunta2 string
 	Pregunta3 string

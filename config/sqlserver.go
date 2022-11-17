@@ -22,6 +22,6 @@ func ConnectDB() {
 	if err != nil {
 		fmt.Println("no se ha podido conectar")
 	}else{
-		log.Println("DB connected")
-	}
+		log.Println("DB connected")   
+	} 
 }

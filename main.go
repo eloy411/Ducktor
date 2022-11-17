@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/eloy411/project-M12-BACK/config"
+	"github.com/eloy411/project-M12-BACK/models"
 	"github.com/eloy411/project-M12-BACK/routes"
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
@@ -12,6 +13,7 @@ import (
 func main() {
 	
 	config.ConnectDB()
+	config.DB.AutoMigrate(&models.Preguntas{})
 	r := mux.NewRouter()
 
 	/**ROUTES*/
