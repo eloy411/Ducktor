@@ -3,15 +3,15 @@ package models
 import "time"
 
 type User struct {
-	IdUser       string
+	IdUser       string `gorm:"primaryKey"`	
 	Nombre       string
 	Edad         int
 	Ciudad       string
 	Hospital     string
 	Enfermedad   string
-	Confianza    string
-	Gravedad     string
+	Confianza    int
+	Gravedad     int
 	Numtest      int
-	Numdibujos   string
-	Fechaentrada time.Time
+	Numdibujos   int
+	Fechaentrada time.Time `gorm:"autoCreateTime"`
 }

@@ -53,16 +53,18 @@ func RegisterResponses(w http.ResponseWriter, r *http.Request) {
 
 	/** REGISTRAR LAS RESPUESTAS */
 
-	// var respuestas models.Responses
+	var respuestas models.ResponsesTestsDaily
+	var user models.User
 
-	// err := json.NewDecoder(r.Body).Decode(&respuestas)
+	err := json.NewDecoder(r.Body).Decode(&respuestas)
 
- 	// if err != nil {
-    //     http.Error(w, err.Error(), http.StatusBadRequest)
-    //     return
-    // }
+ 	if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
 
-	// w.Write([]byte(respuestas.Respuesta1))
+	config.DB.Create(&respuestas)
+	config.DB.Model(&user).Where("Id_User = ?",respuestas.IdUser).Update("NumTest",respuestas.IdTest)
 
 
 	/**RESPONDER AL CLIENTE*/

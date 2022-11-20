@@ -14,12 +14,14 @@ func main() {
 	
 	config.ConnectDB()
 	config.DB.AutoMigrate(&models.Preguntas{})
+	config.DB.AutoMigrate(&models.User{})
+	config.DB.AutoMigrate(&models.ResponsesTestsDaily{})
+	config.DB.AutoMigrate(&models.Painting{})
 	
 
 	r := mux.NewRouter()
 
 	/**ROUTES*/
-
 
 	r.HandleFunc("/ini",routes.Initialization).Methods("GET")
 	r.HandleFunc("/finish",routes.Finish).Methods("GET")
@@ -37,6 +39,7 @@ func main() {
 	r.HandleFunc("/rewards",routes.SaveRewards).Methods("POST")
  
 	r.HandleFunc("/admin-preguntas",routes.SetConversationPreguntas).Methods("GET")
+	r.HandleFunc("/admin-users",routes.SetUsersExamples).Methods("GET")
 
 	handler := cors.Default().Handler(r)
 

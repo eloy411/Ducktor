@@ -6,6 +6,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+
+	"github.com/eloy411/project-M12-BACK/config"
+	"github.com/eloy411/project-M12-BACK/models"
 )
 
 func IniPainting(w http.ResponseWriter, r *http.Request) {
@@ -41,6 +44,12 @@ func SavePaint(w http.ResponseWriter, r *http.Request) {
 
 	r.ParseMultipartForm(0<<50)
 
+	/** DATOS DEL DIBUJO*/
+	var painting models.Painting
+	err := json.NewDecoder(r.Body).Decode(&painting)
+
+
+	/** CAPTAR LA IMAGEN*/
 	file,handler,err := r.FormFile("myFile");
 
 	if err != nil {
@@ -72,7 +81,9 @@ func SavePaint(w http.ResponseWriter, r *http.Request) {
 	fmt.Print(fileBytes)
 	tempFile.Write(fileBytes)
 
-
+	var user models.User
+	
+	config.DB.Model(&user).Where("Id_User = ?",painting.IdUser).Update("NumTest",painting.IdDibujo)
 	/**DEVUELVE FRASE*/
 
 

@@ -2,6 +2,8 @@ package routes
 
 import (
 	"net/http"
+	"time"
+
 	"github.com/eloy411/project-M12-BACK/config"
 	"github.com/eloy411/project-M12-BACK/models"
 )
@@ -81,3 +83,36 @@ func SetConversationPreguntas(w http.ResponseWriter, r *http.Request) {
 	// config.DB.Create(&p5)
 
 } 
+
+func SetUsersExamples(w http.ResponseWriter, r *http.Request) {
+
+	u1 := models.User{
+		IdUser: "1",
+		Nombre: "Eloy",
+		Edad: 12,
+		Ciudad: "Barcelona",
+		Hospital: "Hospital de Sant Pau",
+		Enfermedad: "Cancer",
+		Confianza: 0,
+		Gravedad: 0,
+		Numtest: 0,
+		Numdibujos: 0,
+		Fechaentrada: time.Now(),
+	}
+	u2 := models.User{
+		IdUser: "2",
+		Nombre: "Pablo",
+		Edad: 8,
+		Ciudad: "Barcelona",
+		Hospital: "Hospital de Sant Pau",
+		Enfermedad: "Rotura de tibia",
+		Confianza: 0,
+		Gravedad: 0,
+		Numtest: 0,
+		Numdibujos: 0,
+		Fechaentrada: time.Now(),
+	}
+
+	config.DB.Create(&u1)
+	config.DB.Create(&u2)
+}
