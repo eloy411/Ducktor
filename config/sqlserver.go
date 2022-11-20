@@ -3,14 +3,11 @@ package config
 import (
 	"fmt"
 	"log"
-
-
-
 	"gorm.io/driver/sqlserver"
 	"gorm.io/gorm"
 )
 
-var DSN = "sqlserver://:@127.0.0.1:1433?database=tienda"
+var DSN = "sqlserver://:@127.0.0.1:1433?database=ducktor"
 var DB *gorm.DB
 
 func ConnectDB() {

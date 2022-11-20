@@ -1,20 +1,19 @@
 package models
 
-type Responses struct {
-    IdTest string
-	IdUser string
-    Respuesta1 string
+type Preguntas struct {
+	IdPregunta string `gorm:"primaryKey"`
+	IdTest     string `gorm:"primaryKey"`
+	TypeTest   string
+	Pregunta   string
+	Respuesta1 string
 	Respuesta2 string
 	Respuesta3 string
-	Respuesta4 string
-	Respuesta5 string
+	// Response  []Responses `gorm:"ForeignKey:IdPregunta"`
 }
-
-type Preguntas struct {
-	IdTest int
-	Pregunta1 string
-	Pregunta2 string
-	Pregunta3 string
-	Pregunta4 string
-	Pregunta5 string
-}
+// type Responses struct {
+// 	IdRespuesta string `gorm:"primaryKey"`
+// 	Respuesta   string 
+// 	IdPregunta  string 
+// 	Preguntas   Preguntas `gorm:"foreignKey:IdPregunta"`
+// }
+ 

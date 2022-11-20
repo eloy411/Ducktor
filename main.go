@@ -14,6 +14,8 @@ func main() {
 	
 	config.ConnectDB()
 	config.DB.AutoMigrate(&models.Preguntas{})
+	
+
 	r := mux.NewRouter()
 
 	/**ROUTES*/
@@ -34,6 +36,7 @@ func main() {
 	r.HandleFunc("/rewards",routes.SaveCoins).Methods("PUT")
 	r.HandleFunc("/rewards",routes.SaveRewards).Methods("POST")
  
+	r.HandleFunc("/admin-preguntas",routes.SetConversationPreguntas).Methods("GET")
 
 	handler := cors.Default().Handler(r)
 

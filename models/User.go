@@ -9,9 +9,9 @@ type User struct {
 	Ciudad       string
 	Hospital     string
 	Enfermedad   string
-	Confianza    int
-	Gravedad     int
-	FechaEntrada time.Time
-	NumTest      int
-	NumDibujos   int
+	Confianza    string
+	Gravedad     string
+	Numtest      int
+	Numdibujos   string
+	Fechaentrada time.Time
 }
