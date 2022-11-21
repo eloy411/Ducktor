@@ -23,6 +23,8 @@ func main() {
 
 	/**ROUTES*/
 
+	r.HandleFunc("/login", routes.Login).Methods("POST")
+
 	r.HandleFunc("/ini",routes.Initialization).Methods("GET")
 	r.HandleFunc("/finish",routes.Finish).Methods("GET")
 

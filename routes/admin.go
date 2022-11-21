@@ -89,6 +89,7 @@ func SetUsersExamples(w http.ResponseWriter, r *http.Request) {
 	u1 := models.User{
 		IdUser: "1",
 		Nombre: "Eloy",
+		Password: "1111",
 		Edad: 12,
 		Ciudad: "Barcelona",
 		Hospital: "Hospital de Sant Pau",
@@ -102,6 +103,7 @@ func SetUsersExamples(w http.ResponseWriter, r *http.Request) {
 	u2 := models.User{
 		IdUser: "2",
 		Nombre: "Pablo",
+		Password: "1234",
 		Edad: 8,
 		Ciudad: "Barcelona",
 		Hospital: "Hospital de Sant Pau",
