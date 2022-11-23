@@ -1,70 +1,97 @@
 package routes
 
 import (
+	// "bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
+
+	// "os"
+
+	// "github.com/cloudinary/cloudinary-go/v2"
+	// "github.com/cloudinary/cloudinary-go/v2/api/admin"
+	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 
 	"github.com/eloy411/project-M12-BACK/config"
 	"github.com/eloy411/project-M12-BACK/models"
+	// "github.com/eloy411/project-M12-BACK/config"
+	// "github.com/eloy411/project-M12-BACK/models"
 )
 
 func IniPainting(w http.ResponseWriter, r *http.Request) {
-
 	/**CONFIG HEADERS*/
 	w.WriteHeader(http.StatusCreated)
 	w.Header().Set("Content-Type", "application/json")
 
+	/**GET INFO FROM USER*/
+	var user models.User
+	err := json.NewDecoder(r.Body).Decode(&user)
+	
+	/**LIMITE DE DIBUJOS ===> si llega al total de dibujos se reinicia*/
+	fmt.Println(user.Numdibujos)
+	if (user.Numdibujos == 5) {
+		user.Numdibujos = 0
+	}
+	
+	/**GET INFO FROM DIBUJO*/
+	var result []models.Dibujos
+	
+	config.DB.Table("dibujos").Select("*").Where("Id_Dibujo = ?",user.Numdibujos+1).Scan(&result)
+
 	/**CONFIG RESPONSE*/
-	resp := make(map[string]string)
-	resp["message"] = "iniciando Pating"
-	jsonResp, err := json.Marshal(resp)
+	jsonResp, err := json.Marshal(&result)
 
 	if err != nil {
 		log.Fatalf("Error happened in JSON marshal. Err: %s", err)
 	}
 
-
-
-	/**REQUEST DE FRASES PARA EMPEZAR A PINTAR   ----> SE HA DE VERIFICAR QUE DIBUJOS HA HECHO Y HAY QUE PEDIRLE UNO NUEVO*/
-
 	/**RESPONSE*/
 	w.Write(jsonResp)
 }
 
+
+
+
+
 func SavePaint(w http.ResponseWriter, r *http.Request) {
 
-	/**CONFIG HEADERS*/
-	w.WriteHeader(http.StatusCreated)
-	w.Header().Set("Content-Type", "application/json")
+	/**request for multipart form data*/
+   err := r.ParseMultipartForm(0<<30)
 
-	/**POST PARA GUARDAR EL DIBUJO */
-
-	r.ParseMultipartForm(0<<50)
+   if err != nil {
+	w.WriteHeader(http.StatusBadRequest)
+	return
+}
 
 	/** DATOS DEL DIBUJO*/
-	var painting models.Painting
-	err := json.NewDecoder(r.Body).Decode(&painting)
+	var dibujo models.PaintingDaily
 
+	dibujo.IdDibujo = r.PostFormValue("IdDibujo") 
+	dibujo.NombreDibujo =  r.PostFormValue("NombreDibujo")
+	dibujo.IdUser = r.PostFormValue("IdUser")
 
+	
 	/** CAPTAR LA IMAGEN*/
-	file,handler,err := r.FormFile("myFile");
+
+	file,header,err := r.FormFile("myFile");
 
 	if err != nil {
-		log.Println(err);
+		fmt.Println(err);
 		return
 	}
 
 	defer file.Close()
 	
-	log.Print("Uploaded File: $+v\n", handler.Filename)
+	log.Println("Uploaded File: $+v\n", header.Filename)
 
-	tempFile, err := ioutil.TempFile("temp-images","upload-*.png")
+	tempFile, err := ioutil.TempFile("temp-images",header.Filename+"-*.jpg")
 
 	if err != nil {
-		log.Println(err)
+		fmt.Println(err)
 		return
 	}
 
@@ -78,23 +105,41 @@ func SavePaint(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Print(fileBytes)
 	tempFile.Write(fileBytes)
 
-	var user models.User
+	/*** SUBIR LA IMAGEN A CLOUDINARY*/
+	resp,err := config.CLD.Upload.Upload(context.Background(), tempFile.Name(), uploader.UploadParams{})
+
+	/** guardamos en el struck la respuesta que es el url*/
+	dibujo.URL_Dibujo = resp.SecureURL 
 	
-	config.DB.Model(&user).Where("Id_User = ?",painting.IdUser).Update("NumTest",painting.IdDibujo)
-	/**DEVUELVE FRASE*/
+	/**Borramos el archivo temporal*/
+	nombreDelarchivo := tempFile.Name()
+	tempFile.Close()
 
+	eerr := os.Remove(".\\"+nombreDelarchivo) 
 
-	/**CONFIG RESPONSE*/
-	resp := make(map[string]string)
-	resp["message"] = "DIBUJO GUARDADO"
-	jsonResp, err := json.Marshal(resp)
-
-	if err != nil {
-		log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+	if eerr != nil {
+		fmt.Println(eerr)
+		return
+	}else{
+		fmt.Println("Archivo borrado")
 	}
-	w.Write([]byte(jsonResp))
-	// fmt.Fprintf(w,"subiendo archivo")
+
+	/**REGISTRO EN LA BD LA IMAGEN*/
+	config.DB.Create(&dibujo)
+
+	fmt.Println(&dibujo)
+	/**updateamos el numero de dibujos que ha hecho el usuario*/
+	var user models.User
+	config.DB.Model(&user).Where("Id_User = ?",dibujo.IdUser).Update("NumDibujos",dibujo.IdDibujo)
+
+	
+}
+
+
+func getPaintingsUser(w http.ResponseWriter, r *http.Request){
+	// var dibujos []models.PaintingDaily
+
+	
 }

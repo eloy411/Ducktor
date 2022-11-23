@@ -118,3 +118,43 @@ func SetUsersExamples(w http.ResponseWriter, r *http.Request) {
 	config.DB.Create(&u1)
 	config.DB.Create(&u2)
 }
+
+
+func SetDibujos(w http.ResponseWriter, r *http.Request){
+	
+	d1 := models.Dibujos{
+		IdDibujo: 1,
+		Tipo: "casa",
+		Descripcion: "Tienes que dibujar una casa",
+	}
+
+	d2 := models.Dibujos{
+		IdDibujo: 2,
+		Tipo: "arbol",
+		Descripcion: "Tienes que dibujar un arbol",
+	}
+
+	d3 := models.Dibujos{
+		IdDibujo: 3,
+		Tipo: "amigo",
+		Descripcion: "Tienes que dibujar a un amigo",
+	}
+
+	d4 := models.Dibujos{
+		IdDibujo: 4 ,
+		Tipo: "familia",
+		Descripcion: "Tienes que dibujar a tu familia",
+	}
+
+	d5 := models.Dibujos{
+		IdDibujo: 5,
+		Tipo:"perro",
+		Descripcion: "Tienes que dibujar a un perro",
+	}
+
+	config.DB.Create(&d1)
+	config.DB.Create(&d2)
+	config.DB.Create(&d3)
+	config.DB.Create(&d4)
+	config.DB.Create(&d5)
+}

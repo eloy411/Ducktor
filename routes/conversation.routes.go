@@ -26,7 +26,7 @@ func GetConversation(w http.ResponseWriter, r *http.Request) {
 	
 	err := json.NewDecoder(r.Body).Decode(&user)
 
-	fmt.Println(user.Numdibujos)
+	fmt.Println(user.Numtest)
 	/** REQUEST PARA PEDIR LAS CONVERSACIONES SEGUN DIA, CONFIANZA, NIVEL DE ENFERMEDAD, NUM CONVERSACIONES*/
 	var result []models.Preguntas
 	config.DB.Table("preguntas").Select("*").Where("Id_Test = ?",user.Numtest+1).Scan(&result)

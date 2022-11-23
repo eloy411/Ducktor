@@ -3,6 +3,7 @@ module github.com/eloy411/project-M12-BACK
 go 1.19
 
 require (
+	github.com/cloudinary/cloudinary-go/v2 v2.2.0
 	github.com/creasty/defaults v1.5.1 // indirect
 	github.com/golang-sql/civil v0.0.0-20220223132316-b832511892a9 // indirect
 	github.com/golang-sql/sqlexp v0.1.0 // indirect

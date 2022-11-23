@@ -1,14 +1,23 @@
 package models
 
 import (
-
 	"time"
 )
 
-type Painting struct {
-	IdDibujo     uint64 `gorm:"AUTO_INCREMENT;PRIMARY_KEY;not null"`
+
+type Dibujos struct {
+	IdDibujo    int
+	Tipo        string
+	Descripcion string
+}
+
+type PaintingDaily struct {
+	IdPaintingDaily int `gorm:"AUTO_INCREMENT;PRIMARY_KEY;not null"`
+	IdDibujo     string
 	NombreDibujo string
-	Dibujo       string 
-	IdUser       string `gorm:"FOREIGNKEY:IdUser,constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
-	Fecha        time.Time `gorm:"autoCreateTime"`	
-} 
+	URL_Dibujo   string
+	IdUser       string    `gorm:"FOREIGNKEY:IdUser,constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
+	Fecha        time.Time `gorm:"autoCreateTime;PRIMARY_KEY"`
+}
+
+

@@ -16,9 +16,10 @@ func main() {
 	config.DB.AutoMigrate(&models.Preguntas{})
 	config.DB.AutoMigrate(&models.User{})
 	config.DB.AutoMigrate(&models.ResponsesTestsDaily{})
-	config.DB.AutoMigrate(&models.Painting{})
+	config.DB.AutoMigrate(&models.Dibujos{})
+	config.DB.AutoMigrate(&models.PaintingDaily{})
 	
-
+	config.ConncetCloudinary()
 	r := mux.NewRouter()
 
 	/**ROUTES*/
@@ -35,13 +36,14 @@ func main() {
 	r.HandleFunc("/conversation-register-data",routes.RegisterResponses).Methods("POST")
 
 	r.HandleFunc("/painting-init",routes.IniPainting).Methods("POST")
-	r.HandleFunc("/painting",routes.SavePaint).Methods("POST")
+	r.HandleFunc("/save-painting",routes.SavePaint).Methods("POST")
 
 	r.HandleFunc("/rewards",routes.SaveCoins).Methods("PUT")
 	r.HandleFunc("/rewards",routes.SaveRewards).Methods("POST")
  
 	r.HandleFunc("/admin-preguntas",routes.SetConversationPreguntas).Methods("GET")
 	r.HandleFunc("/admin-users",routes.SetUsersExamples).Methods("GET")
+	r.HandleFunc("/admin-dibujos",routes.SetDibujos)
 
 	handler := cors.Default().Handler(r)
 
