@@ -1,9 +1,17 @@
 package models
 
-type Rewards struct{
-
-	IdUser string 
-	Coins int
-	GadgetA bool
-	GadgetB bool
+type RewardsShop struct {
+	IdRewardShop string `gorm:"primaryKey"`
+	Name         string
+	Price        int
 }
+
+type RewardsUsers struct {
+	Id           string `gorm:"primaryKey"`
+	Id_User      string
+	Name         string
+	IdRewardShop string
+}
+
+
+

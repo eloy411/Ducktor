@@ -14,6 +14,7 @@ type User struct {
 	Gravedad     int
 	Numtest      int
 	Numdibujos   int
+	Coins        int
 	Fechaentrada time.Time `gorm:"autoCreateTime"`
 }
 
