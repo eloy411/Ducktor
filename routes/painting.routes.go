@@ -2,13 +2,20 @@ package routes
 
 import (
 	// "bytes"
+	// "context"
 	"context"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"os"
+	"strings"
+
+	// "io/ioutil"
 	"log"
 	"net/http"
-	"os"
+
+	// "os"
 
 	// "os"
 
@@ -68,52 +75,34 @@ func SavePaint(w http.ResponseWriter, r *http.Request) {
 }
 
 	/** DATOS DEL DIBUJO*/
+	var file models.FileData
 	var dibujo models.PaintingDaily
 
 	dibujo.IdDibujo = r.PostFormValue("IdDibujo") 
 	dibujo.NombreDibujo =  r.PostFormValue("NombreDibujo")
 	dibujo.IdUser = r.PostFormValue("IdUser")
+	file.MyFile = r.PostFormValue("MyFile")
 
+	res1 := strings.Split(file.MyFile, ",")
+
+	file.MyFile = res1[1]
 	
 	/** CAPTAR LA IMAGEN*/
 
-	file,header,err := r.FormFile("myFile");
-
-	if err != nil {
-		fmt.Println(err);
-		return
-	}
-
-	defer file.Close()
-	
-	log.Println("Uploaded File: $+v\n", header.Filename)
-
-	tempFile, err := ioutil.TempFile("temp-images",header.Filename+"-*.jpg")
-
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	tempFile, err := ioutil.TempFile("temp-images","-*.png")
 
 	defer tempFile.Close()
 
-
-	fileBytes, err := ioutil.ReadAll(file)
-
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	tempFile.Write(fileBytes)
+	dec, _ := base64.StdEncoding.DecodeString(file.MyFile)
+	tempFile.Write(dec)
 
 	/*** SUBIR LA IMAGEN A CLOUDINARY*/
 	resp,err := config.CLD.Upload.Upload(context.Background(), tempFile.Name(), uploader.UploadParams{})
 
-	/** guardamos en el struck la respuesta que es el url*/
+	// /** guardamos en el struck la respuesta que es el url*/
 	dibujo.URL_Dibujo = resp.SecureURL 
 	
-	/**Borramos el archivo temporal*/
+	// /**Borramos el archivo temporal*/
 	nombreDelarchivo := tempFile.Name()
 	tempFile.Close()
 
@@ -129,7 +118,7 @@ func SavePaint(w http.ResponseWriter, r *http.Request) {
 	/**REGISTRO EN LA BD LA IMAGEN*/
 	config.DB.Create(&dibujo)
 
-	fmt.Println(&dibujo)
+	
 	/**updateamos el numero de dibujos que ha hecho el usuario*/
 	var user models.User
 	config.DB.Model(&user).Where("Id_User = ?",dibujo.IdUser).Update("NumDibujos",dibujo.IdDibujo)

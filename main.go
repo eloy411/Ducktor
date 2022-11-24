@@ -28,7 +28,7 @@ func main() {
 
 	r.HandleFunc("/ini",routes.Initialization).Methods("GET")
 	r.HandleFunc("/finish",routes.Finish).Methods("GET")
-
+ 
 	r.HandleFunc("/game1",routes.IniGame).Methods("POST")
 	r.HandleFunc("/game1",routes.DataGame).Methods("POST")
 
