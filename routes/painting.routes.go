@@ -85,6 +85,7 @@ func SavePaint(w http.ResponseWriter, r *http.Request) {
 
 	res1 := strings.Split(file.MyFile, ",")
 
+	fmt.Println(dibujo.IdDibujo)
 	file.MyFile = res1[1]
 	
 	/** CAPTAR LA IMAGEN*/
