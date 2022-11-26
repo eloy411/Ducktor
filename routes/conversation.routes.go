@@ -22,14 +22,14 @@ func GetConversation(w http.ResponseWriter, r *http.Request) {
 
 	/** RECIBIMOS LOS DATOS DEL USUARIO*/
 
-	var user models.User
+	var user models.GetPreguntas
 	
 	
 
-	fmt.Println(user.Numtest)
+	fmt.Println(user.IdTest)
 	/** REQUEST PARA PEDIR LAS CONVERSACIONES SEGUN DIA, CONFIANZA, NIVEL DE ENFERMEDAD, NUM CONVERSACIONES*/
 	var result []models.Preguntas
-	config.DB.Table("preguntas").Select("*").Where("Id_Test = ?",user.Numtest+1).Scan(&result)
+	config.DB.Table("preguntas").Select("*").Where("Id_Test = ?",user.IdTest+1).Scan(&result)
 
 	jsonResp, err := json.Marshal(&result)
 

@@ -7,6 +7,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/eloy411/project-M12-BACK/config"
+	"github.com/eloy411/project-M12-BACK/models"
 )
 
 type Person struct {
@@ -21,16 +24,20 @@ func Initialization(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
     /**CARGA LA INFORMACIÓN PERSONAL DEL NIÑO*/
-    /**CARGAR LA INFORMACION DEL NIÑO ENTORNO AL JUEGO (COINS PARA INTERCAMBIAR RECOMPENSAS,ETC)*/
-	resp := make(map[string]string)
-	resp["message"] = "Has iniciado el juego"
-	jsonResp, err := json.Marshal(resp)
+
+	var user models.InfoUser
+	err := json.NewDecoder(r.Body).Decode(&user)
+
+	var result models.User
+	config.DB.Table("users").Select("*").Where("Id_User = ?",user.IdUser).Scan(&result)
+
+    /**RESPONSE INFO DEL NIÑO*/
+	jsonResp, err := json.Marshal(result)
 
 	if err != nil {
 		log.Fatalf("Error happened in JSON marshal. Err: %s", err)
 		return
 	}
-
 
 	w.Write(jsonResp)
 }

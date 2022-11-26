@@ -10,4 +10,8 @@ type Preguntas struct {
 	Respuesta3 string `json:"respuesta3"` 
 }
 
+
+type GetPreguntas struct {
+	IdTest int
+}
   

@@ -35,19 +35,19 @@ func IniPainting(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	/**GET INFO FROM USER*/
-	var user models.User
+	var user models.GetDibujo
 	err := json.NewDecoder(r.Body).Decode(&user)
 	
 	/**LIMITE DE DIBUJOS ===> si llega al total de dibujos se reinicia*/
-	fmt.Println(user.Numdibujos)
-	if (user.Numdibujos == 5) {
-		user.Numdibujos = 0
+	
+	if (user.IdDibujo == 5) {
+		user.IdDibujo = 0
 	}
 	
 	/**GET INFO FROM DIBUJO*/
 	var result []models.Dibujos
 	
-	config.DB.Table("dibujos").Select("*").Where("Id_Dibujo = ?",user.Numdibujos+1).Scan(&result)
+	config.DB.Table("dibujos").Select("*").Where("Id_Dibujo = ?",user.IdDibujo+1).Scan(&result)
 
 	/**CONFIG RESPONSE*/
 	jsonResp, err := json.Marshal(&result)
@@ -118,17 +118,10 @@ func SavePaint(w http.ResponseWriter, r *http.Request) {
 	/**REGISTRO EN LA BD LA IMAGEN*/
 	config.DB.Create(&dibujo)
 
-	
+	tempFile.Close()
 	/**updateamos el numero de dibujos que ha hecho el usuario*/
 	var user models.User
 	config.DB.Model(&user).Where("Id_User = ?",dibujo.IdUser).Update("NumDibujos",dibujo.IdDibujo)
-
-	
-}
-
-
-func getPaintingsUser(w http.ResponseWriter, r *http.Request){
-	// var dibujos []models.PaintingDaily
 
 	
 }

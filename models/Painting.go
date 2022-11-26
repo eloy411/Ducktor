@@ -15,6 +15,10 @@ type FileData struct {
 	MyFile string
 }
 
+type GetDibujo struct {
+	IdDibujo int
+}
+
 type PaintingDaily struct {
 	IdPaintingDaily int `gorm:"AUTO_INCREMENT;PRIMARY_KEY;not null"`
 	IdDibujo     string
