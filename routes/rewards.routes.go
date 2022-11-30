@@ -14,7 +14,7 @@ func SendRewardsShop(w http.ResponseWriter, r *http.Request) {
 
 	var rewards []models.RewardsShop;
 
-	config.DB.Table("rewards_shop").Select("*").Scan(&rewards)
+	config.DB.Table("rewards_shops").Select("*").Scan(&rewards)
 
 	jsonResp, err := json.Marshal(&rewards)
 
