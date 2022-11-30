@@ -158,3 +158,58 @@ func SetDibujos(w http.ResponseWriter, r *http.Request){
 	config.DB.Create(&d4)
 	config.DB.Create(&d5)
 }
+
+
+
+func SetRewardsShop(w http.ResponseWriter, r *http.Request){
+	
+	d1 := models.RewardsShop{
+		IdRewardShop:1,
+		Name: "Cuadro",
+		Price: 100,
+		Url: "https://res.cloudinary.com/eloy411/image/upload/v1669653667/Duckdoc_xzayat.glb",
+	}
+
+	d2 := models.RewardsShop{
+		IdRewardShop:2,
+		Name: "Dinosaurio",
+		Price: 200,
+		Url: "https://res.cloudinary.com/eloy411/image/upload/v1669313425/yjusl94n4ufdrzeyd4kz.png",
+	}
+
+	d3 := models.RewardsShop{
+		IdRewardShop:3,	
+		Name: "Planta",
+		Price: 100,
+		Url: "https://res.cloudinary.com/eloy411/image/upload/v1669482452/usxqzllusv06jb29zoqp.png",
+	}
+
+	d4 := models.RewardsShop{
+		IdRewardShop:4,
+		Name: "Cohete",
+		Price: 1000,
+		Url: "https://res.cloudinary.com/eloy411/image/upload/v1669200885/hyy73nsz4cj82scqpo6h.jpg",
+	}
+
+	d5 := models.RewardsShop{
+		IdRewardShop:5,
+		Name: "Muñeco",
+		Price: 300,
+		Url: "https://res.cloudinary.com/eloy411/image/upload/v1669654515/rw3dvyozqlg9lwsi6zro.png",
+	}
+
+	d6 := models.RewardsShop{
+		IdRewardShop:6,
+		Name: "Moñigo",
+		Price: 7000,
+		Url: "https://res.cloudinary.com/eloy411/image/upload/v1669732993/fjwjnlnz2jxhtaegc36l.png",
+	}
+
+	config.DB.Create(&d1)
+	config.DB.Create(&d2)
+	config.DB.Create(&d3)
+	config.DB.Create(&d4)
+	config.DB.Create(&d5)
+	config.DB.Create(&d6)
+
+}
