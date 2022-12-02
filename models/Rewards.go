@@ -8,14 +8,14 @@ type RewardsShop struct {
 }
 
 type RewardsUsers struct {
-	Id           string `gorm:"AUTO_INCREMENT;PRIMARY_KEY;not null"`
+	IdData           int `gorm:"AUTO_INCREMENT;PRIMARY_KEY;not null"`
 	Id_User      string
 	Name         string
 	IdRewardShop string
 	Url 		 string
 }
 
-type Coins struct {
+type Coins struct { 
 	IdUser string
 	Coins  int
 }

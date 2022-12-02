@@ -19,6 +19,8 @@ func main() {
 	config.DB.AutoMigrate(&models.Dibujos{})
 	config.DB.AutoMigrate(&models.PaintingDaily{})
 	config.DB.AutoMigrate(&models.RewardsShop{})
+	config.DB.AutoMigrate(&models.RewardsUsers{})
+	config.DB.AutoMigrate(&models.StatesDucktorDaily{})
 	
 	config.ConncetCloudinary()
 	r := mux.NewRouter()
@@ -43,11 +45,16 @@ func main() {
 	r.HandleFunc("/rewards-coins",routes.SaveCoins).Methods("PUT")
 	r.HandleFunc("/rewards-user",routes.SaveRewardsUser).Methods("POST")
 	r.HandleFunc("/send-rewards-user",routes.GetRewardsUser).Methods("POST")
+
+
+	r.HandleFunc("/states-ducktor",routes.SetStatesDucktor).Methods("POST")
+	r.HandleFunc("/states-ducktor",routes.UpdateStatesDucktor).Methods("PUT")
  
 	r.HandleFunc("/admin-preguntas",routes.SetConversationPreguntas).Methods("GET")
 	r.HandleFunc("/admin-users",routes.SetUsersExamples).Methods("GET")
 	r.HandleFunc("/admin-dibujos",routes.SetDibujos)
 	r.HandleFunc("/admin-rewards-shop",routes.SetRewardsShop).Methods("GET")
+	r.HandleFunc("/admin-rewards-user",routes.SetRewardsUser).Methods("GET")
 
 	handler := cors.Default().Handler(r)
 

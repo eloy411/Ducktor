@@ -69,7 +69,8 @@ func GetRewardsUser(w http.ResponseWriter, r *http.Request) {
 
 	var user models.InfoUser
 
-	
+	err := json.NewDecoder(r.Body).Decode(&user)
+
 	var rewardsUser []models.RewardsUsers
 
 	config.DB.Table("rewards_users").Select("*").Where("Id_User = ?",user.IdUser).Scan(&rewardsUser)

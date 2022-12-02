@@ -213,3 +213,18 @@ func SetRewardsShop(w http.ResponseWriter, r *http.Request){
 	config.DB.Create(&d6)
 
 }
+
+
+func SetRewardsUser(w http.ResponseWriter, r *http.Request){
+	
+	d1 := models.RewardsUsers{
+		IdData : 1,
+		Id_User: "1",
+		Name: "Cuadro",
+		IdRewardShop: "1",
+		Url: "https://res.cloudinary.com/eloy411/image/upload/v1669653667/Duckdoc_xzayat.glb",
+		
+	}
+
+	config.DB.Create(&d1)
+}
