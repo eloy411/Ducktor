@@ -126,3 +126,31 @@ func SavePaint(w http.ResponseWriter, r *http.Request) {
 
 	
 }
+
+
+func GetPaintDaily(w http.ResponseWriter, r *http.Request) {
+	/**CONFIG HEADERS*/
+	w.WriteHeader(http.StatusCreated)
+	w.Header().Set("Content-Type", "application/json")
+
+	/**GET INFO FROM USER*/
+	var user models.InfoUser
+	err := json.NewDecoder(r.Body).Decode(&user)
+
+
+	fmt.Println(user.IdUser)
+	/**GET INFO FROM DIBUJO*/
+	var result []models.PaintingDaily
+	
+	config.DB.Table("painting_dailies").Select("*").Where("Id_User = ?",user.IdUser).Scan(&result)
+
+	/**CONFIG RESPONSE*/
+	jsonResp, err := json.Marshal(&result)
+
+	if err != nil {
+		log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+	}
+
+	/**RESPONSE*/
+	w.Write(jsonResp)
+}

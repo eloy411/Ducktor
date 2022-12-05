@@ -28,33 +28,33 @@ func SetConversationPreguntas(w http.ResponseWriter, r *http.Request) {
 		Respuesta2:"Enfadarme mucho" ,
 		Respuesta3: "Decir que no pasa nada y que volveré a intentarlo",
 	}
-	// pA3 := models.Preguntas{
-	// 	IdTest: "1",
-	// 	IdPregunta: "3",
-	// 	TypeTest: "autoestima",
-	// 	Pregunta: "Y cuando algo te sale muy bien!!?",
-	// 	Respuesta1: ,
-	// 	Respuesta2: ,
-	// 	Respuesta3: 
-	// }
-	// pA4 := models.Preguntas{
-	// 	IdTest: "1",
-	// 	IdPregunta: "4",
-	// 	TypeTest: "autoestima",
-	// 	Pregunta: "Cuando hablas con papá o mamá como te comportas?",
-	// 	Respuesta1: ,
-	// 	Respuesta2: ,
-	// 	Respuesta3: 
-	// }
-	// pA5 := models.Preguntas{
-	// 	IdTest: "1",
-	// 	IdPregunta: "5",
-	// 	TypeTest: "autoestima",
-	// 	Pregunta: "Cuando estas con un amigo que haceis?",
-	// 	Respuesta1: ,
-	// 	Respuesta2: ,
-	// 	Respuesta3: 
-	// }
+	pA3 := models.Preguntas{
+		IdTest: "1",
+		IdPregunta: "3",
+		TypeTest: "autoestima",
+		Pregunta: "Y cuando algo te sale muy bien!!?",
+		Respuesta1:"chupame la pollaaa" ,
+		Respuesta2: "kakakaka",
+		Respuesta3: "lalalalala",
+	}
+	pA4 := models.Preguntas{
+		IdTest: "1",
+		IdPregunta: "4",
+		TypeTest: "autoestima",
+		Pregunta: "Cuando hablas con papá o mamá como te comportas?",
+		Respuesta1:"ajjajaja" ,
+		Respuesta2: "kakakaka",
+		Respuesta3: "lalalalala", 
+	}
+	pA5 := models.Preguntas{
+		IdTest: "1",
+		IdPregunta: "5",
+		TypeTest: "autoestima",
+		Pregunta: "Cuando estas con un amigo que haceis?",
+		Respuesta1:"ajjajaja" ,
+		Respuesta2: "kakakaka",
+		Respuesta3: "lalalalala",
+	}
 
 
 	pB1 := models.Preguntas{
@@ -78,6 +78,9 @@ func SetConversationPreguntas(w http.ResponseWriter, r *http.Request) {
 	}
 	config.DB.Create(&pA1)
 	config.DB.Create(&pA2)
+	config.DB.Create(&pA3)
+	config.DB.Create(&pA4)
+	config.DB.Create(&pA5)
 	config.DB.Create(&pB1)
 	config.DB.Create(&pB2)
 	// config.DB.Create(&p5)
@@ -224,6 +227,21 @@ func SetRewardsUser(w http.ResponseWriter, r *http.Request){
 		IdRewardShop: "1",
 		Url: "https://res.cloudinary.com/eloy411/image/upload/v1669653667/Duckdoc_xzayat.glb",
 		
+	}
+
+	config.DB.Create(&d1)
+}
+
+func ExempleStateDucktor(w http.ResponseWriter, r *http.Request){
+	
+	d1 := models.StatesDucktorDaily{
+
+		Id: 1,
+		IdUser: "1",
+		Date: time.Now(),
+		Good: 0,
+		Average: 0,
+		Danger: 0,
 	}
 
 	config.DB.Create(&d1)

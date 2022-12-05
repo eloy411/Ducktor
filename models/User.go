@@ -19,7 +19,7 @@ type User struct {
 }
 
 type InfoUser struct {
-	IdUser       string `gorm:"primaryKey"`	
+	IdUser       string 
 	Nombre       string
 	Edad         int
 	Enfermedad   string

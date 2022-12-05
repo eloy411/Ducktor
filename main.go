@@ -40,6 +40,7 @@ func main() {
 
 	r.HandleFunc("/painting-init",routes.IniPainting).Methods("POST")
 	r.HandleFunc("/save-painting",routes.SavePaint).Methods("POST")
+	r.HandleFunc("/get-painting-daily",routes.GetPaintDaily).Methods("POST")
 
 	r.HandleFunc("/rewards-shop",routes.SendRewardsShop).Methods("GET")
 	r.HandleFunc("/rewards-coins",routes.SaveCoins).Methods("PUT")
@@ -55,6 +56,7 @@ func main() {
 	r.HandleFunc("/admin-dibujos",routes.SetDibujos)
 	r.HandleFunc("/admin-rewards-shop",routes.SetRewardsShop).Methods("GET")
 	r.HandleFunc("/admin-rewards-user",routes.SetRewardsUser).Methods("GET")
+	r.HandleFunc("/admin-states-ducktor",routes.ExempleStateDucktor).Methods("GET")
 
 	handler := cors.Default().Handler(r)
 
