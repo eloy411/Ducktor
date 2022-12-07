@@ -8,6 +8,7 @@ type Preguntas struct {
 	Respuesta1 string `json:"respuesta1"`
 	Respuesta2 string `json:"respuesta2"` 
 	Respuesta3 string `json:"respuesta3"` 
+	Respuesta4 string `json:"respuesta4,Default:null"` 
 }
 
 

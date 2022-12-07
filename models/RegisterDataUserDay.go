@@ -12,4 +12,4 @@ type ResponsesTestsDaily struct {
 	Respuesta4  int
 	Respuesta5  int
 	Fecha       time.Time `gorm:"autoCreateTime"`  
-}
+}  

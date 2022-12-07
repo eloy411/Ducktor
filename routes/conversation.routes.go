@@ -25,7 +25,7 @@ func GetConversation(w http.ResponseWriter, r *http.Request) {
 	var user models.GetPreguntas
 	
 	
-
+	err := json.NewDecoder(r.Body).Decode(&user)
 	fmt.Println(user.IdTest)
 	/** REQUEST PARA PEDIR LAS CONVERSACIONES SEGUN DIA, CONFIANZA, NIVEL DE ENFERMEDAD, NUM CONVERSACIONES*/
 	var result []models.Preguntas
@@ -56,8 +56,9 @@ func RegisterResponses(w http.ResponseWriter, r *http.Request) {
 	var respuestas models.ResponsesTestsDaily
 	var user models.User
 
-	err := json.NewDecoder(r.Body).Decode(&respuestas)
 
+	err := json.NewDecoder(r.Body).Decode(&respuestas)
+	fmt.Println(respuestas)
  	if err != nil {
         http.Error(w, err.Error(), http.StatusBadRequest)
         return
@@ -68,7 +69,7 @@ func RegisterResponses(w http.ResponseWriter, r *http.Request) {
 
 
 	/**RESPONDER AL CLIENTE*/
-
+ 
 	
 	resp := make(map[string]string)
 	resp["message"] = "almacenando respuestas"
