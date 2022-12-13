@@ -2,7 +2,7 @@ package models
 
 type Preguntas struct {
 	IdPregunta string `gorm:"primaryKey"`
-	IdTest     string `gorm:"primaryKey"`
+	IdTest     int `gorm:"primaryKey"`
 	TypeTest   string `json:"type_test"`	
 	Pregunta   string `json:"pregunta"`
 	Respuesta1 string `json:"respuesta1"`

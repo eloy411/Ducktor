@@ -20,7 +20,7 @@ type User struct {
 
 type InfoUser struct {
 	IdUser       string 
-	Nombre       string
+	Nombre       string 
 	Edad         int
 	Enfermedad   string
 	Confianza    int

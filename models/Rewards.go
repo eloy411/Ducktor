@@ -3,8 +3,15 @@ package models
 type RewardsShop struct {
 	IdRewardShop int `gorm:"primaryKey"`
 	Name         string
+	ParamX       float64
+	ParamY       float64
+	ParamaZ      float64
+	RotationX    float64 `gorm:"default:0.0"`
+	RotationY    float64 `gorm:"default:0.0"`
 	Price        int
 	Url          string
+	UrlImagen	 string
+	UrlIntegrado string `gorm:"default:''"`
 }
 
 type RewardsUsers struct {
@@ -14,11 +21,14 @@ type RewardsUsers struct {
 	ParamX       float64
 	ParamY       float64
 	ParamaZ      float64
-	IdRewardShop string
+	RotationX    float64 `gorm:"default:0.0"`
+	RotationY    float64 `gorm:"default:0.0"`
+	IdRewardShop int 
 	Url          string
+	UrlIntegrado string `gorm:"default:''"`
 }
 
 type Coins struct {
-	IdUser string
+	IdUser string 
 	Coins  int
 }

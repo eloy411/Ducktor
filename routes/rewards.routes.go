@@ -2,6 +2,7 @@ package routes
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -61,7 +62,8 @@ func SaveRewardsUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	config.DB.Create(&rewardsUser)
+	fmt.Println(rewardsUser)
+	config.DB.Create(&rewardsUser)  
 
 }
 

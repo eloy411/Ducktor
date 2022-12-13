@@ -43,9 +43,9 @@ func main() {
 	r.HandleFunc("/get-painting-daily",routes.GetPaintDaily).Methods("POST")
 
 	r.HandleFunc("/rewards-shop",routes.SendRewardsShop).Methods("GET")
-	r.HandleFunc("/rewards-coins",routes.SaveCoins).Methods("PUT")
+	r.HandleFunc("/rewards-coins",routes.SaveCoins).Methods("POST")
 	r.HandleFunc("/rewards-user",routes.SaveRewardsUser).Methods("POST")
-	r.HandleFunc("/send-rewards-user",routes.GetRewardsUser).Methods("POST")
+	r.HandleFunc("/send-rewards-user",routes.GetRewardsUser).Methods("POST") 
 
 
 	r.HandleFunc("/states-ducktor",routes.SetStatesDucktor).Methods("POST")
@@ -60,5 +60,5 @@ func main() {
 
 	handler := cors.Default().Handler(r)
 
-	http.ListenAndServe(":3000",handler)
+	http.ListenAndServe(":3000",handler) 
 }
