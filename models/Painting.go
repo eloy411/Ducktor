@@ -11,21 +11,21 @@ type Dibujos struct {
 	Descripcion string
 }
 
-type FileData struct {
+type FileData struct { 
 	MyFile string
 }
 
-type GetDibujo struct {
+type GetDibujo struct { 
 	IdDibujo int
 }
 
-type PaintingDaily struct {
+type PaintingDaily struct { 
 	IdPaintingDaily int `gorm:"AUTO_INCREMENT;PRIMARY_KEY;not null"`
 	IdDibujo     string
 	NombreDibujo string
 	URL_Dibujo   string
-	IdUser       string    `gorm:"FOREIGNKEY:IdUser,constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
+	IdUser       string    `gorm:"PRIMARY_KEY"`
 	Fecha        time.Time `gorm:"autoCreateTime;PRIMARY_KEY"`
-}
+} 
 
-
+ 

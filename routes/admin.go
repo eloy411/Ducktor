@@ -34,14 +34,14 @@ func SetUsersExamples(w http.ResponseWriter, r *http.Request) {
 		Hospital:     "Hospital de Sant Pau",
 		Enfermedad:   "Rotura de tibia",
 		Confianza:    0,
-		Gravedad:     0,
+		Gravedad:     1, 
 		Numtest:      0,
 		Numdibujos:   0,
 		Coins:        1000, 
 		Fechaentrada: time.Now(), 
 	}
 
-	config.DB.Create(&u1)
+	config.DB.Create(&u1) 
 	config.DB.Create(&u2)
 }
 
@@ -89,43 +89,43 @@ func SetRewardsShop(w http.ResponseWriter, r *http.Request) {
 	d1 := models.RewardsShop{
 		IdRewardShop: 1,
 		Name:         "Cuadro",
-		ParamX:       20.0,
-		ParamY:       5.0,
-		ParamaZ:      -40.0,
+		ParamX:       3.0,
+		ParamY:       4.0, 
+		ParamaZ:      -5.0,
 		RotationY:    -1.6,
-		Price:        100,
-		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1670868376/ducktor-shop/Cuadro_ldmffk.glb",
-		UrlImagen:    "https://res.cloudinary.com/eloy411/image/upload/v1670788090/ducktor-shop/img_items/desk_fpun8g.png",
+		Price:        100, 
+		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1671358915/ducktor-shop/cuadro_dengri.glb",
+		UrlImagen:    "https://res.cloudinary.com/eloy411/image/upload/v1671358833/ducktor-shop/cuadro_rh27eb.png",
 	}
 
 	d2 := models.RewardsShop{
 		IdRewardShop: 2,
-		Name:         "Dinosaurio",
-		ParamX:       50.0,
-		ParamY:       1.5,
-		ParamaZ:      -40.0,
+		Name:         "Gato",
+		ParamX:       5.0,
+		ParamY:       0.3,
+		ParamaZ:      0.0,
 		Price:        200,
-		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1670788092/ducktor-shop/cat_wrdf4p.glb",
+		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1671358367/ducktor-shop/catglb_bnw0p6.glb",
 		UrlImagen:    "https://res.cloudinary.com/eloy411/image/upload/v1670788089/ducktor-shop/img_items/cat_xdy80e.png",
 	}
 
 	d3 := models.RewardsShop{
 		IdRewardShop: 3,
-		Name:         "Planta",
-		ParamX:       10.0,
-		ParamY:       1.0,
-		ParamaZ:      -40.0,
+		Name:         "Reloj",
+		ParamX:       -25.0,
+		ParamY:       7.0,
+		ParamaZ:      -16.0,
 		Price:        100,
-		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1670788091/ducktor-shop/present_zaubnh.glb",
-		UrlImagen:    "https://res.cloudinary.com/eloy411/image/upload/v1670788090/ducktor-shop/img_items/present_kctnqr.png",
+		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1671358341/ducktor-shop/reloj_h7ccas.glb",
+		UrlImagen:    "https://res.cloudinary.com/eloy411/image/upload/v1670788089/ducktor-shop/img_items/clock_sylvex.png",
 	}
 
 	d4 := models.RewardsShop{
-		IdRewardShop: 4,
+		IdRewardShop: 4, 
 		Name:         "Cohete",
-		ParamX:       40.0,
-		ParamY:       2.0,
-		ParamaZ:      -35.0,
+		ParamX:       19.0,
+		ParamY:       0.35,  
+		ParamaZ:      -14.0, 
 		Price:        1000,
 		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1670788091/ducktor-shop/rocket_is23zs.glb",
 		UrlImagen:    "https://res.cloudinary.com/eloy411/image/upload/v1670788090/ducktor-shop/img_items/rocket_t7veyc.png",
@@ -133,54 +133,54 @@ func SetRewardsShop(w http.ResponseWriter, r *http.Request) {
 
 	d5 := models.RewardsShop{
 		IdRewardShop: 5,
-		Name:         "Muñeco",
-		ParamX:       30.0,
-		ParamY:       5.0,
-		ParamaZ:      -20.0,
+		Name:         "Pelota",
+		ParamX:       8.0,
+		ParamY:       0.75,
+		ParamaZ:      0.0,
 		Price:        300,
-		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1670788089/ducktor-shop/clock_nessi6.glb",
-		UrlImagen:    "https://res.cloudinary.com/eloy411/image/upload/v1670788089/ducktor-shop/img_items/clock_sylvex.png",
+		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1671358360/ducktor-shop/ball_okz7ub.glb",
+		UrlImagen:    "https://res.cloudinary.com/eloy411/image/upload/v1670788089/ducktor-shop/img_items/ball_z9aobh.png",
 	}
 
 	d6 := models.RewardsShop{
 		IdRewardShop: 6,
-		Name:         "Moñigo",
-		ParamX:       15.0,
-		ParamY:       4.0,
-		ParamaZ:      -38.0,
+		Name:         "Auriculares",
+		ParamX:       -10.0,
+		ParamY:       0.0,
+		ParamaZ:      0.0,
 		Price:        7000,
-		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1670788091/ducktor-shop/headphones_bqo3gy.glb",
+		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1671358827/ducktor-shop/auriculares_duj5up.glb",
 		UrlImagen:    "https://res.cloudinary.com/eloy411/image/upload/v1670788090/ducktor-shop/img_items/headphones_cpn9i1.png",
 	}
 	d7 := models.RewardsShop{
 		IdRewardShop: 7,
 		Name:         "book",
-		ParamX:       25.0,
-		ParamY:       0.0,
-		ParamaZ:      0.0,
-		Price:        7000,
-		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1670788089/ducktor-shop/book_wfo1pm.glb",
+		ParamX:       14.0,
+		ParamY:       3.0, 
+		ParamaZ:      -13.0,
+		Price:        700,
+		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1671358372/ducktor-shop/book_vopdsh.glb",
 		UrlImagen:    "https://res.cloudinary.com/eloy411/image/upload/v1670788088/ducktor-shop/img_items/book_n2ttv7.png",
 	}
-	d8 := models.RewardsShop{
+	d8 := models.RewardsShop{ 
 		IdRewardShop: 8,
-		Name:         "Moñigo3",
-		ParamX:       0.0,
-		ParamY:       0.0,
-		ParamaZ:      0.0,
+		Name:         "Regalo", 
+		ParamX:       19.5,
+		ParamY:       2.7, 
+		ParamaZ:      4.0,
 		Price:        7000,
-		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1670788089/ducktor-shop/ball_ddikxu.glb",
-		UrlImagen:    "https://res.cloudinary.com/eloy411/image/upload/v1670788089/ducktor-shop/img_items/ball_z9aobh.png",
+		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1671358349/ducktor-shop/regalo_dvh9uo.glb",
+		UrlImagen:    "https://res.cloudinary.com/eloy411/image/upload/v1670788090/ducktor-shop/img_items/present_kctnqr.png",
 	}
 
 	config.DB.Create(&d1)
 	config.DB.Create(&d2)
 	config.DB.Create(&d3)
 	config.DB.Create(&d4)
-	config.DB.Create(&d5)
+	config.DB.Create(&d5) 
 	config.DB.Create(&d6)
 	config.DB.Create(&d7)
-	config.DB.Create(&d8)
+	config.DB.Create(&d8) 
 
 }
 
@@ -198,7 +198,7 @@ func SetRewardsUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func ExempleStateDucktor(w http.ResponseWriter, r *http.Request) {
-
+ 
 	d1 := models.StatesDucktorDaily{
 
 		Id:      1,

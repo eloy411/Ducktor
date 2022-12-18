@@ -121,10 +121,13 @@ func SavePaint(w http.ResponseWriter, r *http.Request) {
 
 	tempFile.Close()
 	/**updateamos el numero de dibujos que ha hecho el usuario*/
+	if(dibujo.IdDibujo != "Libre"){
 	var user models.User
 	config.DB.Model(&user).Where("Id_User = ?",dibujo.IdUser).Update("NumDibujos",dibujo.IdDibujo)
+	}else {
 
-	
+		fmt.Println("Dibujo libre")
+	}
 }
 
 
