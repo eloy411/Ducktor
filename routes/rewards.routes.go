@@ -22,8 +22,8 @@ func SendRewardsShop(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatalf("Error happened in JSON marshal. Err: %s", err)
 		return
-	}
-
+	} 
+ 
 	/**RESPONSE*/
 	w.Write(jsonResp)
 
@@ -39,7 +39,7 @@ func SaveCoins(w http.ResponseWriter, r *http.Request){
 	var coins models.Coins
 	var user models.User
 
-	err := json.NewDecoder(r.Body).Decode(&coins)
+	err := json.NewDecoder(r.Body).Decode(&coins)  
 
 	if err != nil {
 		log.Fatalf("Error happened in JSON marshal. Err: %s", err)
@@ -66,6 +66,8 @@ func SaveRewardsUser(w http.ResponseWriter, r *http.Request) {
 	config.DB.Create(&rewardsUser)  
 
 }
+
+
 
 func GetRewardsUser(w http.ResponseWriter, r *http.Request) {
 

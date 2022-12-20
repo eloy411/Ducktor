@@ -87,12 +87,12 @@ func SetDibujos(w http.ResponseWriter, r *http.Request) {
 func SetRewardsShop(w http.ResponseWriter, r *http.Request) {
 
 	d1 := models.RewardsShop{
-		IdRewardShop: 1,
-		Name:         "Cuadro",
-		ParamX:       3.0,
-		ParamY:       4.0, 
-		ParamaZ:      -5.0,
-		RotationY:    -1.6,
+		IdRewardShop: 1, 
+		Name:         "Cuadro", 
+		ParamX:       13.0,
+		ParamY:       7.0,   
+		ParamaZ:      -11.1,   
+		RotationY:    -1.6, 
 		Price:        100, 
 		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1671358915/ducktor-shop/cuadro_dengri.glb",
 		UrlImagen:    "https://res.cloudinary.com/eloy411/image/upload/v1671358833/ducktor-shop/cuadro_rh27eb.png",
@@ -102,7 +102,7 @@ func SetRewardsShop(w http.ResponseWriter, r *http.Request) {
 		IdRewardShop: 2,
 		Name:         "Gato",
 		ParamX:       5.0,
-		ParamY:       0.3,
+		ParamY:       0.3, 
 		ParamaZ:      0.0,
 		Price:        200,
 		Url:          "https://res.cloudinary.com/eloy411/image/upload/v1671358367/ducktor-shop/catglb_bnw0p6.glb",
@@ -209,5 +209,6 @@ func ExempleStateDucktor(w http.ResponseWriter, r *http.Request) {
 		Danger:  0,
 	}
 
-	config.DB.Create(&d1)
+	config.DB.Create(&d1)   
 }
+ 
